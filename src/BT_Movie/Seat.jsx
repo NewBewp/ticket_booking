@@ -7,12 +7,23 @@ import cn from "classnames";
 const Seat = ({ ghe }) => {
     const dispatch = useDispatch();
 
-    const { seatBooking } = useSelector((state) => state.btMovie);
-
+    const { seatBooking, seatBooked } = useSelector((state) => state.btMovie);
 
     return (
         <div
-            className={cn("Seat d-flex" ,{booking: seatBooking.find(chair => chair.soGhe === ghe.soGhe)} )}
+            className={cn(
+                "Seat d-flex",
+                {
+                    booking: seatBooking.find(
+                        (chair) => chair.soGhe === ghe.soGhe
+                    ),
+                },
+                {
+                    booked: seatBooked.find(
+                        (chair) => chair.soGhe === ghe.soGhe
+                    ),
+                }
+            )}
             key={ghe.soGhe}
             onClick={() => {
                 dispatch(btMovieActions.setSeatBooking(ghe));
