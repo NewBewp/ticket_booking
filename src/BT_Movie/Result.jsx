@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { btMovieActions } from "../store/BT_Movie/slice";
 
 const Result = () => {
-
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const { seatBooking } = useSelector((state) => state.btMovie);
     console.log("seatBooking: ", seatBooking);
 
@@ -40,14 +39,25 @@ const Result = () => {
                                 <td>{chair.soGhe}</td>
                                 <td>{chair.gia}</td>
                                 <td>
-                                    <button className="btn btn-danger">
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => {
+                                            dispatch(
+                                                btMovieActions.setSeatBooking(
+                                                    chair
+                                                )
+                                            );
+                                        }}
+                                    >
                                         X
                                     </button>
                                 </td>
                             </tr>
                         ))}
                         <tr>
-                            <td className="text-danger">Tổng tiền cần thanh toán</td>
+                            <td className="text-danger">
+                                Tổng tiền cần thanh toán
+                            </td>
                             <td>
                                 {seatBooking.reduce((total, chair) => {
                                     return (total += chair.gia);
@@ -58,9 +68,14 @@ const Result = () => {
                     </tbody>
                 </table>
 
-                <button className="btn btn-success" onClick={()=>{
-                    dispatch(btMovieActions.setSeatBooked())
-                }}>Thanh toán</button>
+                <button
+                    className="btn btn-success"
+                    onClick={() => {
+                        dispatch(btMovieActions.setSeatBooked());
+                    }}
+                >
+                    Thanh toán
+                </button>
             </div>
         </div>
     );
