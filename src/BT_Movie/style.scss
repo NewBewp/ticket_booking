@@ -5,7 +5,15 @@
   justify-content: center;
   align-items: center;
   border-radius: 20%;
+
   &:hover{
     background-color: #fea500;
   }
+  &.booking{
+    background-color: red;
+    color: white;
+    border: transparent;
+  }
 }
+
+

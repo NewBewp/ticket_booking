@@ -5,7 +5,7 @@ import Result from "./Result";
 
 const BT_Movie = () => {
 
-console.log('seatData:', seatData);
+// console.log('seatData:', seatData);
 
   return (
     <div className="container">

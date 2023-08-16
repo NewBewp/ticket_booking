@@ -1,11 +1,26 @@
-import React from 'react'
-import "./style.scss"
+import React from "react";
+import "./style.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { btMovieActions } from "../store/BT_Movie/slice";
+import cn from "classnames";
+
+const Seat = ({ ghe }) => {
+    const dispatch = useDispatch();
+
+    const { seatBooking } = useSelector((state) => state.btMovie);
 
 
-const Seat = ({ghe}) => {
-  return (
-    <div className='Seat d-flex' key={ghe.soGhe}>{ghe.soGhe}</div>
-  )
-}
+    return (
+        <div
+            className={cn("Seat d-flex" ,{booking: seatBooking.find(chair => chair.soGhe === ghe.soGhe)} )}
+            key={ghe.soGhe}
+            onClick={() => {
+                dispatch(btMovieActions.setSeatBooking(ghe));
+            }}
+        >
+            {ghe.soGhe}
+        </div>
+    );
+};
 
-export default Seat
+export default Seat;
